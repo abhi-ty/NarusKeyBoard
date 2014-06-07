@@ -1,0 +1,66 @@
+RSA
+===
+
+RSA is a public key cryptosystem. It is implemented
+by openssl.
+
+* Private key generation
+-------------------------
+
+openssl genrsa -out sprk.key -passout pass:my_password 2048
+
+
+* Public key generation
+------------------------
+
+openssl rsa -in sprk.key -pubout -out spuk.key
+
+
+---------------------------------------------------------------
+AES
+===
+
+AES is a shared key cryptosystem. It is implemented 
+by openssl.
+AES is a block cipher and has multiple modes of operation.
+AES-ecb is the simplest mode of operation, but not secure.
+It does not need IV (Initialization Vectors).
+AES-cbc mode is more complicated and require IV initialization 
+vectors.
+
+
+Encryption
+----------
+
+key: 256bits key, it can be generated using sha256sum
+iv_number: intial vector. It should be a random number that is public
+
+openssl aes-256-cbc -K key -iv iv_number -e -a -in plaintext.txt
+
+Using sprk.key to generate the key
+
+openssl aes-256-cbc -K `sha256sum sprk.key | cut -d ' ' -f 1` -iv 0 -e -a in plaintext.txt > cipher.txt
+
+
+Decryption
+----------
+
+openssl aes-256-cbc -K key -iv -a -d -in cipher.txt
+
+
+End-to-end example
+------------------
+
+Key generation
+$ sha256sum /tmp/sprk.key
+d3e5f4a167211023654ea1004122e696e1186a5281a319521a8f75006c60ae77
+
+Encryption using key
+$ openssl aes-256-cbc -K d3e5f4a167211023654ea1004122e696e1186a5281a319521a8f75006c60ae77 -iv 0 -e -a
+plaintext
+JWhBkNsyZDxs2Ycva3LvjA==
+
+Decryption using key
+$ openssl aes-256-cbc -K d3e5f4a167211023654ea1004122e696e1186a5281a319521a8f75006c60ae77 -iv 0 -d -a
+JWhBkNsyZDxs2Ycva3LvjA==
+plaintext
