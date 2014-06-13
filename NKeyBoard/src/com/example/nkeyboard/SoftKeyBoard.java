@@ -57,7 +57,7 @@ public class SoftKeyBoard extends InputMethodService  implements KeyboardView.On
         mWordSeparators = getResources().getString(R.string.word_separators);
     }
 
-    /**
+    /** 
      * This is the point where you can do all of your UI initialization.  It
      * is called after creation and any configuration change.
      */
@@ -81,8 +81,7 @@ public class SoftKeyBoard extends InputMethodService  implements KeyboardView.On
      * a configuration change.
      */
     @Override public View onCreateInputView() {
-        mInputView = (LatinKeyBoardView) getLayoutInflater().inflate(
-                R.layout.input, null);
+        mInputView = (LatinKeyBoardView) getLayoutInflater().inflate(R.layout.input, null);
         mInputView.setOnKeyboardActionListener(this);
         mInputView.setKeyboard(mQwertyKeyboard);
         return mInputView;
