@@ -266,7 +266,7 @@ public class CandidateView extends View
             if (y <= 0) {
                 // Fling up!?
                 if (mSelectedIndex >= 0) {
-                    mService.pickSuggestionManually(mSelectedIndex);
+                    ///mService.pickSuggestionManually(mSelectedIndex);
                     mSelectedIndex = -1;
                 }
             }
@@ -275,7 +275,7 @@ public class CandidateView extends View
         case MotionEvent.ACTION_UP:
             if (!mScrolled) {
                 if (mSelectedIndex >= 0) {
-                    mService.pickSuggestionManually(mSelectedIndex);
+                    //mService.pickSuggestionManually(mSelectedIndex);
                 }
             }
             mSelectedIndex = -1;
@@ -297,7 +297,7 @@ public class CandidateView extends View
         //onDraw(null);
         draw(null);
         if (mSelectedIndex >= 0) {
-            mService.pickSuggestionManually(mSelectedIndex);
+           // mService.pickSuggestionManually(mSelectedIndex);
         }
         invalidate();
     }
