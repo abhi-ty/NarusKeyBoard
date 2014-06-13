@@ -28,6 +28,7 @@ public class LatinKeyBoard extends Keyboard {
 
     private Key mEnterKey;
     private Key mSpaceKey;
+    private Key mEncryptionKey;
     
     public LatinKeyBoard(Context context, int xmlLayoutResId) {
         super(context, xmlLayoutResId);
@@ -47,6 +48,9 @@ public class LatinKeyBoard extends Keyboard {
         } else if (key.codes[0] == ' ') {
             mSpaceKey = key;
         }
+        /*else if (key.codes[0] == -1) {
+        	mEncryptionKey = key;
+        }*/
         return key;
     }
     
