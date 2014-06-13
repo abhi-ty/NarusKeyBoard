@@ -6,6 +6,7 @@ import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.method.MetaKeyKeyListener;
+import android.util.Log;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.View;
@@ -82,6 +83,7 @@ public class SoftKeyBoard extends InputMethodService  implements KeyboardView.On
      */
     @Override public View onCreateInputView() {
         mInputView = (LatinKeyBoardView) getLayoutInflater().inflate(R.layout.input, null);
+        Log.d("testing", "test");
         mInputView.setOnKeyboardActionListener(this);
         mInputView.setKeyboard(mQwertyKeyboard);
         return mInputView;
